@@ -36,32 +36,40 @@ def filter_redundancy_by_centroid(articles, X, kmeans, num_clusters, top_k_per_c
     return filtered_articles
 
 def find_optimal_k(X, max_k=10):
-    """
-    Tự động tìm số lượng cụm (K) tối ưu bằng Silhouette Score.
-    """
     num_samples = X.shape[0]
-
-    # Nếu số bài báo quá ít (dưới 3 bài), không cần gom cụm, trả về 1 cụm duy nhất
     if num_samples < 3:
         return 1
 
-    # Giới hạn max_k không vượt quá số lượng bài báo
-    actual_max_k = min(max_k, num_samples - 1)
+    # Sửa 1: max_k động theo quy tắc sqrt(n/2), không hardcode 8
+    auto_max_k = min(max_k, int(num_samples ** 0.5 // 1), num_samples - 1)
+    actual_max_k = max(2, auto_max_k) # max_k sẽ nằm từ 0-23
+
+    # Sửa 2: sample để Silhouette không bị O(n²) chậm với 500+ bài
+    if hasattr(X, "toarray"):
+        X_dense = X.toarray()
+    else:
+        X_dense = X
+
+    if num_samples > 300:
+        rng = np.random.default_rng(42)
+        idx = rng.choice(num_samples, 300, replace=False)
+        X_sample = X_dense[idx]
+    else:
+        X_sample = X_dense
 
     best_k = 2
     best_score = -1
 
     for k in range(2, actual_max_k + 1):
         kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
-        labels = kmeans.fit_predict(X)
-
-        # Chỉ tính được Silhouette khi có từ 2 cụm trở lên và không phải mỗi bài 1 cụm
-        if 1 < len(set(labels)) < num_samples:
-            score = silhouette_score(X, labels)
+        labels = kmeans.fit_predict(X_sample)
+        if 1 < len(set(labels)) < len(X_sample):
+            score = silhouette_score(X_sample, labels)
             if score > best_score:
                 best_score = score
                 best_k = k
 
+    print(f"    Silhouette tốt nhất: {best_score:.4f} tại K={best_k}")
     return best_k
 
 def run_clustering():
@@ -82,13 +90,16 @@ def run_clustering():
     X_tfidf = vectorizer.fit_transform(corpus_tfidf)
 
     # hàm tối ưu K
-    optimal_k_tfidf = find_optimal_k(X_tfidf.toarray() if hasattr(X_tfidf, "toarray") else X_tfidf, max_k=8)
+    optimal_k_tfidf = find_optimal_k(X_tfidf.toarray() if hasattr(X_tfidf, "toarray") else X_tfidf, max_k=23)
     print(f"[*] Thuật toán tự động chọn K = {optimal_k_tfidf} cho TF-IDF")
 
     kmeans_tfidf = KMeans(n_clusters=optimal_k_tfidf, random_state=42, n_init=10)
     kmeans_tfidf.fit(X_tfidf)
 
-    filtered_tfidf = filter_redundancy_by_centroid(articles, X_tfidf, kmeans_tfidf, optimal_k_tfidf, top_k_per_cluster=1)
+    filtered_tfidf = filter_redundancy_by_centroid(
+                        articles, X_tfidf, kmeans_tfidf, optimal_k_tfidf,
+                        top_k_per_cluster=3  # lấy 3 bài/cụm thay vì 1
+                    )
 
     # 🌟 ĐỘC LẬP HÓA DỮ LIỆU: Chỉ giữ lại các trường liên quan đến TF-IDF
     clean_tfidf_data = []
@@ -123,13 +134,16 @@ def run_clustering():
     X_bert = np.array(embeddings)
 
     # hàm tối ưu K
-    optimal_k_bert = find_optimal_k(X_bert, max_k=8)
+    optimal_k_bert = find_optimal_k(X_bert, max_k=23)
     print(f"[*] Thuật toán tự động chọn K = {optimal_k_bert} cho viBERT4news")
 
     kmeans_bert = KMeans(n_clusters=optimal_k_bert, random_state=42, n_init=10)
     kmeans_bert.fit(X_bert)
 
-    filtered_bert = filter_redundancy_by_centroid(articles, X_bert, kmeans_bert, optimal_k_bert, top_k_per_cluster=1)
+    filtered_bert = filter_redundancy_by_centroid(
+                    articles, X_bert, kmeans_bert, optimal_k_bert,
+                    top_k_per_cluster=3
+                    )
 
     # 🌟 ĐỘC LẬP HÓA DỮ LIỆU: Chỉ giữ lại các trường liên quan đến BERT
     clean_bert_data = []

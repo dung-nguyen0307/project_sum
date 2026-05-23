@@ -13,7 +13,12 @@ def generate_single_summary(filtered_file_path, output_file_path, pipeline_name)
         articles = json.load(f)
 
     # Tổng hợp nội dung từ các bài báo cốt lõi đã được lọc trùng
-    combined_text = " ".join([a['nội_dung_gốc'] for a in articles])
+    MAX_WORDS_PER_ARTICLE = 300
+    truncated_texts = [
+        " ".join(a['nội_dung_gốc'].split()[:MAX_WORDS_PER_ARTICLE])
+        for a in articles
+    ]
+    combined_text = " ".join(truncated_texts)
 
     # Cấu hình mô hình Transformer ViT5
     model_name = "VietAI/vit5-base-vietnews-summarization"
@@ -28,16 +33,15 @@ def generate_single_summary(filtered_file_path, output_file_path, pipeline_name)
     inputs = tokenizer(input_text, return_tensors="pt", max_length=1024, truncation=True).to(device)
 
     with torch.no_grad():
-        with torch.no_grad():
-            outputs = model.generate(
-                inputs["input_ids"],
-                max_length=220,  # 1. Tăng giới hạn trần
-                min_length=100,  # 2. Tăng giới hạn sàn
-                num_beams=4,  # 3. Tăng số lượng chùm tìm kiếm để mở rộng không gian chọn từ
-                length_penalty=1,  # 4. Đặt length_penalty >= 1.0 để phạt các chuỗi ngắn, khuyến khích câu dài
-                no_repeat_ngram_size=3,  # 5. Chặn lặp cụm 3 từ liên tiếp khi ép mô hình viết dài
-                early_stopping=True
-            )
+        outputs = model.generate(
+            inputs["input_ids"],
+            max_length=224,  # 1. Tăng giới hạn trần ~230 từ
+            min_length=148,  # 2. Tăng giới hạn sàn ~190 từ
+            num_beams=6,  # 3. Tăng số lượng chùm tìm kiếm để mở rộng không gian chọn từ
+            length_penalty=2,  # 4. Đặt length_penalty >= 1.0 để phạt các chuỗi ngắn, khuyến khích câu dài
+            no_repeat_ngram_size=3,  # 5. Chặn lặp cụm 3 từ liên tiếp khi ép mô hình viết dài
+            early_stopping=False
+        )
 
     """
     min_length=150: Tạo ra một bộ lọc bắt buộc (hard constraint). Mô hình sẽ không được phép phân phối xác suất cho token kết thúc (<eos>) 
