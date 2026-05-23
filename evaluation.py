@@ -8,7 +8,7 @@ import google.generativeai as genai
 # CẤU HÌNH API LLM (Thay bằng API Key của bạn nếu muốn tự động tạo Ground Truth)
 # Bạn có thể lấy key miễn phí tại: https://aistudio.google.com/
 # ==========================================
-API_KEY = "ĐIỀN_API_KEY_CỦA_BẠN_VÀO_ĐÂY"  # Ví dụ: "AIzaSy..."
+API = "AIzaSyCbYWJojpTlBIl5Z_ikgWXtaxKRhMSWPa0"
 
 
 def create_ground_truth_via_llm(input_file="us_iran_news_processed.json", gt_file="ground_truth.txt"):
@@ -19,7 +19,7 @@ def create_ground_truth_via_llm(input_file="us_iran_news_processed.json", gt_fil
             return f.read().strip()
 
     print("\n--- ĐANG GỌI LLM ĐỂ TẠO GROUND TRUTH ---")
-    if API_KEY == "ĐIỀN_API_KEY_CỦA_BẠN_VÀO_ĐÂY":
+    if API_KEY == API:
         print(
             "CẢNH BÁO: Chưa cấu hình API_KEY. Bạn hãy tự copy các bài báo nhờ ChatGPT tóm tắt và lưu vào file 'ground_truth.txt' nhé!")
         return None
@@ -125,3 +125,6 @@ def run_evaluation():
         json.dump(evaluation_report, f, indent=4)
 
     print("\n✅ Đã lưu báo cáo so sánh vào evaluation_report.json")
+
+if __name__ == "__main__":
+    run_evaluation()

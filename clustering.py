@@ -4,6 +4,7 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 from transformers import AutoTokenizer, AutoModel
+from sklearn.metrics import silhouette_score
 
 
 def filter_redundancy_by_centroid(articles, X, kmeans, num_clusters, top_k_per_cluster=1):
@@ -34,16 +35,44 @@ def filter_redundancy_by_centroid(articles, X, kmeans, num_clusters, top_k_per_c
 
     return filtered_articles
 
+def find_optimal_k(X, max_k=10):
+    """
+    Tự động tìm số lượng cụm (K) tối ưu bằng Silhouette Score.
+    """
+    num_samples = X.shape[0]
+
+    # Nếu số bài báo quá ít (dưới 3 bài), không cần gom cụm, trả về 1 cụm duy nhất
+    if num_samples < 3:
+        return 1
+
+    # Giới hạn max_k không vượt quá số lượng bài báo
+    actual_max_k = min(max_k, num_samples - 1)
+
+    best_k = 2
+    best_score = -1
+
+    for k in range(2, actual_max_k + 1):
+        kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
+        labels = kmeans.fit_predict(X)
+
+        # Chỉ tính được Silhouette khi có từ 2 cụm trở lên và không phải mỗi bài 1 cụm
+        if 1 < len(set(labels)) < num_samples:
+            score = silhouette_score(X, labels)
+            if score > best_score:
+                best_score = score
+                best_k = k
+
+    return best_k
 
 def run_clustering():
     input_file = "us_iran_news_processed.json"
-    num_clusters = 8
+    # num_clusters = 8
 
     try:
         with open(input_file, 'r', encoding='utf-8') as f:
             articles = json.load(f)
     except FileNotFoundError:
-        print("Không tìm thấy file processed. Hãy chạy preprocessing trước.")
+        print("Không tìm thấy file processed.")
         return
 
     # --- NHÁNH 1: TF-IDF VÀ LỌC TRÙNG ---
@@ -52,10 +81,14 @@ def run_clustering():
     vectorizer = TfidfVectorizer(max_features=1000)
     X_tfidf = vectorizer.fit_transform(corpus_tfidf)
 
-    kmeans_tfidf = KMeans(n_clusters=num_clusters, random_state=42, n_init=10)
+    # hàm tối ưu K
+    optimal_k_tfidf = find_optimal_k(X_tfidf.toarray() if hasattr(X_tfidf, "toarray") else X_tfidf, max_k=8)
+    print(f"[*] Thuật toán tự động chọn K = {optimal_k_tfidf} cho TF-IDF")
+
+    kmeans_tfidf = KMeans(n_clusters=optimal_k_tfidf, random_state=42, n_init=10)
     kmeans_tfidf.fit(X_tfidf)
 
-    filtered_tfidf = filter_redundancy_by_centroid(articles, X_tfidf, kmeans_tfidf, num_clusters, top_k_per_cluster=1)
+    filtered_tfidf = filter_redundancy_by_centroid(articles, X_tfidf, kmeans_tfidf, optimal_k_tfidf, top_k_per_cluster=1)
 
     # 🌟 ĐỘC LẬP HÓA DỮ LIỆU: Chỉ giữ lại các trường liên quan đến TF-IDF
     clean_tfidf_data = []
@@ -88,10 +121,15 @@ def run_clustering():
         embeddings.append(sentence_emb)
 
     X_bert = np.array(embeddings)
-    kmeans_bert = KMeans(n_clusters=num_clusters, random_state=42, n_init=10)
+
+    # hàm tối ưu K
+    optimal_k_bert = find_optimal_k(X_bert, max_k=8)
+    print(f"[*] Thuật toán tự động chọn K = {optimal_k_bert} cho viBERT4news")
+
+    kmeans_bert = KMeans(n_clusters=optimal_k_bert, random_state=42, n_init=10)
     kmeans_bert.fit(X_bert)
 
-    filtered_bert = filter_redundancy_by_centroid(articles, X_bert, kmeans_bert, num_clusters, top_k_per_cluster=1)
+    filtered_bert = filter_redundancy_by_centroid(articles, X_bert, kmeans_bert, optimal_k_bert, top_k_per_cluster=1)
 
     # 🌟 ĐỘC LẬP HÓA DỮ LIỆU: Chỉ giữ lại các trường liên quan đến BERT
     clean_bert_data = []

@@ -31,11 +31,11 @@ def generate_single_summary(filtered_file_path, output_file_path, pipeline_name)
         with torch.no_grad():
             outputs = model.generate(
                 inputs["input_ids"],
-                max_length=512,  # 1. Tăng giới hạn trần (Token ceiling) từ 256 lên 512
-                min_length=150,  # 2. Tăng giới hạn sàn từ 60 lên 150 để ép mô hình không dừng sớm
-                num_beams=5,  # 3. Tăng số lượng chùm tìm kiếm để mở rộng không gian chọn từ mượt hơn
-                length_penalty=2.5,  # 4. Đặt length_penalty > 1.0 để phạt các chuỗi ngắn, khuyến khích câu dài
-                no_repeat_ngram_size=3,  # 5. RẤT QUAN TRỌNG: Chặn lặp cụm 3 từ liên tiếp khi ép mô hình viết dài
+                max_length=220,  # 1. Tăng giới hạn trần
+                min_length=100,  # 2. Tăng giới hạn sàn
+                num_beams=4,  # 3. Tăng số lượng chùm tìm kiếm để mở rộng không gian chọn từ
+                length_penalty=1,  # 4. Đặt length_penalty >= 1.0 để phạt các chuỗi ngắn, khuyến khích câu dài
+                no_repeat_ngram_size=3,  # 5. Chặn lặp cụm 3 từ liên tiếp khi ép mô hình viết dài
                 early_stopping=True
             )
 
