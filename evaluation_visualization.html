@@ -46,9 +46,9 @@ tbody tr:hover{background:#fafafe}
 <p class="sub">Pipeline: Crawl → Preprocessing → K-Means Clustering → ViT5 Summarization</p>
 
 <div class="cards">
-  <div class="card"><div class="lbl">ROUGE-1 F1 tốt nhất</div><div class="val">0.7229</div><div class="tag">▲ Từ đơn — TF-IDF</div></div>
-  <div class="card"><div class="lbl">ROUGE-2 F1 tốt nhất</div><div class="val">0.3353</div><div class="tag">▲ Cặp từ — TF-IDF</div></div>
-  <div class="card"><div class="lbl">ROUGE-L F1 tốt nhất</div><div class="val">0.3042</div><div class="tag">▲ Mạch lạc — TF-IDF</div></div>
+  <div class="card"><div class="lbl">ROUGE-1 F1 tốt nhất</div><div class="val">0.6840</div><div class="tag">▲ Từ đơn — TF-IDF</div></div>
+  <div class="card"><div class="lbl">ROUGE-2 F1 tốt nhất</div><div class="val">0.2976</div><div class="tag">▲ Cặp từ — TF-IDF</div></div>
+  <div class="card"><div class="lbl">ROUGE-L F1 tốt nhất</div><div class="val">0.3043</div><div class="tag">▲ Mạch lạc — TF-IDF</div></div>
 </div>
 
 <div class="charts">
@@ -88,25 +88,25 @@ tbody tr:hover{background:#fafafe}
         <th class="divider">F1</th><th>Precision</th><th>Recall</th>
       </tr>
     </thead>
-    <tbody><tr><td class="metric-name">ROUGE-1</td><td style="color:#1D9E75;font-weight:600">0.7229</td><td>0.8219</td><td>0.6452</td><td class="divider" style="color:#444">0.5448</td><td>0.8172</td><td>0.4086</td></tr><tr><td class="metric-name">ROUGE-2</td><td style="color:#1D9E75;font-weight:600">0.3353</td><td>0.3814</td><td>0.2992</td><td class="divider" style="color:#444">0.2338</td><td>0.3514</td><td>0.1752</td></tr><tr><td class="metric-name">ROUGE-L</td><td style="color:#1D9E75;font-weight:600">0.3042</td><td>0.3459</td><td>0.2715</td><td class="divider" style="color:#444">0.2724</td><td>0.4086</td><td>0.2043</td></tr></tbody>
+    <tbody><tr><td class="metric-name">ROUGE-1</td><td style="color:#1D9E75;font-weight:600">0.6840</td><td>0.6625</td><td>0.7070</td><td class="divider" style="color:#444">0.6491</td><td>0.6705</td><td>0.6290</td></tr><tr><td class="metric-name">ROUGE-2</td><td style="color:#444">0.2894</td><td>0.2803</td><td>0.2992</td><td class="divider" style="color:#1D9E75;font-weight:600">0.2976</td><td>0.3075</td><td>0.2884</td></tr><tr><td class="metric-name">ROUGE-L</td><td style="color:#1D9E75;font-weight:600">0.3043</td><td>0.2947</td><td>0.3145</td><td class="divider" style="color:#444">0.2829</td><td>0.2923</td><td>0.2742</td></tr></tbody>
   </table>
 </div>
 
 <div class="section">
   <h2>Phân tích Precision / Recall</h2>
   <div class="pr-grid">
-    <div class="pr-card"><h3>TF-IDF + K-Means + ViT5</h3><div class="pr-row"><span>ROUGE-1</span><span>P=<b class="high">82.2%</b>&nbsp; R=<b class="high">64.5%</b></span></div><div class="pr-row"><span>ROUGE-2</span><span>P=<b class="low">38.1%</b>&nbsp; R=<b class="low">29.9%</b></span></div><div class="pr-row"><span>ROUGE-L</span><span>P=<b class="low">34.6%</b>&nbsp; R=<b class="low">27.2%</b></span></div><div class="pr-note">⚠ Precision > Recall: tóm tắt chính xác nhưng chưa bao phủ đủ ý</div></div>
-    <div class="pr-card"><h3>viBERT + K-Means + ViT5</h3><div class="pr-row"><span>ROUGE-1</span><span>P=<b class="high">81.7%</b>&nbsp; R=<b class="low">40.9%</b></span></div><div class="pr-row"><span>ROUGE-2</span><span>P=<b class="low">35.1%</b>&nbsp; R=<b class="low">17.5%</b></span></div><div class="pr-row"><span>ROUGE-L</span><span>P=<b class="low">40.9%</b>&nbsp; R=<b class="low">20.4%</b></span></div><div class="pr-note">⚠ Precision > Recall: tóm tắt chính xác nhưng chưa bao phủ đủ ý</div></div>
+    <div class="pr-card"><h3>TF-IDF + K-Means + ViT5</h3><div class="pr-row"><span>ROUGE-1</span><span>P=<b class="high">66.2%</b>&nbsp; R=<b class="high">70.7%</b></span></div><div class="pr-row"><span>ROUGE-2</span><span>P=<b class="low">28.0%</b>&nbsp; R=<b class="low">29.9%</b></span></div><div class="pr-row"><span>ROUGE-L</span><span>P=<b class="low">29.5%</b>&nbsp; R=<b class="low">31.5%</b></span></div><div class="pr-note">✓ Cân bằng Precision và Recall</div></div>
+    <div class="pr-card"><h3>viBERT + K-Means + ViT5</h3><div class="pr-row"><span>ROUGE-1</span><span>P=<b class="high">67.0%</b>&nbsp; R=<b class="high">62.9%</b></span></div><div class="pr-row"><span>ROUGE-2</span><span>P=<b class="low">30.7%</b>&nbsp; R=<b class="low">28.8%</b></span></div><div class="pr-row"><span>ROUGE-L</span><span>P=<b class="low">29.2%</b>&nbsp; R=<b class="low">27.4%</b></span></div><div class="pr-note">⚠ Precision > Recall: tóm tắt chính xác nhưng chưa bao phủ đủ ý</div></div>
   </div>
 </div>
 
 <div class="section">
   <h2>Bản tóm tắt sinh ra &amp; Ground Truth</h2>
   <div class="plabel" style="color:#185FA5">TF-IDF + K-Means + ViT5</div>
-  <div class="summary-box" style="background:#EFF6FF;border-left:3px solid #185FA5">Các phái đoàn Mỹ và Iran ngày 11/4 bắt đầu đàm phán trực tiếp tại thủ đô Islamabad của Pakistan, nhưng các bên không đạt được thoả thuận nào sau 21 giờ thương lượng. Diễn biến làm dấy lên lo ngại Mỹ và Tehran trở lại thế đối đầu, tiếp tục cuộc xung đột đã khiến hàng nghìn người thiệt mạng, tác động tiêu cực đến nền kinh tế toàn cầu. " Hãy chờ xem Iran có chấp nhận nó hay không ", Tổng thống Trump từng đe doạ "xóa sổ một nền văn minh " ngay trước khi Washington và Tehran đạt lệnh ngừng bắn 2 tuần hôm 8/4... là những tin đáng chú ý nhất sáng nay ( 12/4 ) cho Trung Quốc và Triều Tiên " kêu gọi " ngừng vũ khí hạt nhân, cảnh báo xung đột có thể leo thang trở lại với các yếu tố được dự báo có thể còn tồn tại giữa các căng thẳng sau hội nghị thượng đỉnh liên quan đến căng thẳng tại khu vực Trung Đông cũng như những động thái tiếp theo của ông Trump, ông chủ Nhà Trắng đã có những tuyên bố cứng rắn.</div>
+  <div class="summary-box" style="background:#EFF6FF;border-left:3px solid #185FA5">Tổng thống Mỹ Donald Trump cho biết Chủ tịch Trung Quốc Tập Cận Bình có lập trường rõ ràng rằng Iran không được sở hữu vũ khí hạt nhân, trong khi ông Trump vẫn kiên quyết không cho rằng điều này có thể làm Iran ngừng chương trình hạt nhân trong 20 năm tới hay không.'Ông Tập nói như vậy là để cho Iran mở lại eo biển Hormuz ', Hãng tin AFP đưa tin ngày 15-5. Người đứng đầu Nhà Trắng đang có chuyến đi dạo cùng ông Donald Trump tại khu Trung Nam Hải ở Bắc Kinh hôm qua ( 14-5 ).Ửn ảnh hưởng đến chuyến đi của ông Kim Jong-un ở Bắc Triều Tiên hiện vẫn còn nguyên hình ảnh trên trang mạng xã hội của người Mỹ và nhiều người đưa tin về diễn biến này, ngày 16-5-2018, theo Đài CNN, và ông Trump đã rút lại chuyến thăm Trung Quốc trở lại sau chuyến thăm của ông đến Bắc Kinh, sau chuyến đi xuống biển ở Trung Quốc, và có thể tái ngộ ông Tập khi ông kết thúc chuyến thăm Bắc Kinh cũng như khi ông rút khỏi chuyến công du đến Trung Quốc tháng 11 ở Đông Nam Á''Ùn 12-11 '.Ửng có nhiều tàu đã đi dạo và có tàu theo dõi các tuyến đường biển ở Bắc Trung Quốc.ỰNG MẬU DIỆP.ÙN 16h30 ngày 17-5 tại thủ đô Washington và hơn 300.000 người trên chuyên cơ Air Force One vẫn còn tiếp tục tăng tốc tìm kiếm và ngắm nhìn các con tàu trên đường phố ở thủ đô của Mỹ.</div>
   <div class="gap"></div>
   <div class="plabel" style="color:#1D9E75">viBERT + K-Means + ViT5</div>
-  <div class="summary-box" style="background:#ECFDF5;border-left:3px solid #1D9E75">Các nguồn tin cho biết Mỹ đã gửi bản đề xuất ngừng bắn 15 điểm tới Iran ; Mỹ cam kết hỗ trợ việc sản xuất điện tại nhà máy hạt nhân dân sự Bushehr của Một nhà máy lọc khí hoá lỏng của Iran bị hư hại sau vụ tấn công của Iran hồi tháng 3 vào thành phố công nghiệp ngàn tỉ ở Trung Quốc... là những tin đáng chú ý trong ngày 17-12 này. TTO xin giới thiệu một số nội dung quan trọng của " cuộc đàm phán phán phán lớn " Mỹ - Iran đang tập trung vào vấn đề Triều Tiên hiện nay.ỈNH MẬU TUỔI TRÍ 24h sáng nay ( 25/11 ).... là tin nóng thế giới 24 giờ ngày 25-11.</div>
+  <div class="summary-box" style="background:#ECFDF5;border-left:3px solid #1D9E75">Sáng 20.5, giá xăng dầu quay đầu giảm nhẹ. Tuy nhiên, giá dầu vẫn duy trì mức cao sau nhiều phiên tăng mạnh, trong khi các nhà máy lọc dầu Trung Quốc cắt giảm công suất chế biến hơn 1 triệu thùng/ngày kể từ khi chiến sự Iran bùng phát. Giá xăng dầu dự báo sẽ tăng vào chiều mai ( 21/5 ) - ngày nóng nhất của căng thẳng thương mại Mỹ - Trung tại khu vực Trung Đông hiện vẫn là tâm điểm chú ý của trái tim người tiêu dùng thế giới. Tại châu Á, nếu động thái này diễn biến khó lường, có thể xảy ra xung đột quân sự sẽ ảnh hưởng đến thị trường Mỹ và Trung Quốc cùng tăng giá vào chiều tối và ngày 22/5/2019 sau cuộc gặp giữa ông Trump và ông Kim Jong-un, 111,28 USD/người, tức sau hiệp ước hạt nhân do xung đột Mỹ - Iran nổ ra, leo thang có thể tạo ra động thái quân sự tương tự như những ngày đầu tiên của Mỹ - Anh, tức kéo dài hơn 2 tháng sau cuộc chiến tranh thương mại tự do ( FED ) kéo dài 1-2 năm 1999-2000, 1-1-1900 và 112,15 USD/30 USD/45 giờ đồng hồ, 12h01 sáng nay 20,11 giờ châu Á, 11 giờ 01/4, 15 giờ chiều 22 giờ 02-11/05 tại G20, 30/4 tại Trung Đông.</div>
   <div class="gap"></div>
   <div class="plabel" style="color:#7C3AED">Ground Truth (tham chiếu)</div>
   <div class="summary-box" style="background:#F5F3FF;border-left:3px solid #7C3AED">Căng thẳng Mỹ - Iran leo thang nghiêm trọng từ đầu năm 2026, bắt đầu bằng chiến dịch phong tỏa hải quân của Mỹ tại vịnh Oman và biển Arab. Mỹ triển khai "Dự án Tự do" hộ tống tàu thương mại qua eo biển Hormuz, trong khi Iran đáp trả bằng tên lửa, UAV và tàu tấn công nhanh nhắm vào tàu chiến Mỹ và cơ sở dầu mỏ của UAE.
@@ -140,8 +140,8 @@ Pakistan đứng ra làm trung gian, tổ chức vòng đàm phán trực tiếp
       data: {
         labels: labels,
         datasets: [
-          {type:'bar', label:'TF-IDF', data:[0.7229,0.3353,0.3042], backgroundColor:'#185FA5', borderRadius:5},
-          {type:'bar', label:'viBERT', data:[0.5448,0.2338,0.2724],  backgroundColor:'#1D9E75', borderRadius:5},
+          {type:'bar', label:'TF-IDF', data:[0.6840,0.2894,0.3043], backgroundColor:'#185FA5', borderRadius:5},
+          {type:'bar', label:'viBERT', data:[0.6491,0.2976,0.2829],  backgroundColor:'#1D9E75', borderRadius:5},
           {type:'line', label:'Ngưỡng tốt', data:[0.45,0.20,0.40], borderColor:'#aaa', borderDash:[5,5], pointRadius:0, borderWidth:1.5, fill:false}
         ]
       },
@@ -153,10 +153,10 @@ Pakistan đứng ra làm trung gian, tổ chức vòng đàm phán trực tiếp
       data: {
         labels: labels,
         datasets: [
-          {label:'P TF-IDF', data:[0.8219,0.3814,0.3459], backgroundColor:'#185FA5', borderRadius:4},
-          {label:'R TF-IDF', data:[0.6452,0.2992,0.2715], backgroundColor:'#93C5FD', borderRadius:4},
-          {label:'P viBERT', data:[0.8172,0.3514,0.4086],  backgroundColor:'#1D9E75', borderRadius:4},
-          {label:'R viBERT', data:[0.4086,0.1752,0.2043],  backgroundColor:'#6EE7B7', borderRadius:4}
+          {label:'P TF-IDF', data:[0.6625,0.2803,0.2947], backgroundColor:'#185FA5', borderRadius:4},
+          {label:'R TF-IDF', data:[0.7070,0.2992,0.3145], backgroundColor:'#93C5FD', borderRadius:4},
+          {label:'P viBERT', data:[0.6705,0.3075,0.2923],  backgroundColor:'#1D9E75', borderRadius:4},
+          {label:'R viBERT', data:[0.6290,0.2884,0.2742],  backgroundColor:'#6EE7B7', borderRadius:4}
         ]
       },
       options: opts()

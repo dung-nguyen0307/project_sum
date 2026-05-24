@@ -115,3 +115,12 @@ def run_preprocessing():
         json.dump(processed_articles, f, ensure_ascii=False, indent=4)
 
     print(f"✅ HOÀN THÀNH TIỀN XỬ LÝ! Lưu tại: {output_file}")
+    seen_titles = set()
+    unique_articles = []
+    for a in processed_articles:
+        if a['title'] not in seen_titles:
+            seen_titles.add(a['title'])
+            unique_articles.append(a)
+
+    print(f"Sau dedup: {len(unique_articles)}/{len(processed_articles)} bài unique")
+    processed_articles = unique_articles

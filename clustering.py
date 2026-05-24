@@ -40,41 +40,53 @@ def find_optimal_k(X, max_k=10):
     if num_samples < 3:
         return 1
 
-    # Sửa 1: max_k động theo quy tắc sqrt(n/2), không hardcode 8
-    auto_max_k = min(max_k, int(num_samples ** 0.5 // 1), num_samples - 1)
-    actual_max_k = max(2, auto_max_k) # max_k sẽ nằm từ 0-23
-
-    # Sửa 2: sample để Silhouette không bị O(n²) chậm với 500+ bài
     if hasattr(X, "toarray"):
         X_dense = X.toarray()
     else:
         X_dense = X
 
-    if num_samples > 300:
-        rng = np.random.default_rng(42)
-        idx = rng.choice(num_samples, 300, replace=False)
-        X_sample = X_dense[idx]
-    else:
-        X_sample = X_dense
+    # Giới hạn max_k hợp lý: tối đa 15, tối thiểu 2
+    actual_max_k = min(max_k, num_samples - 1, 15)
+    actual_max_k = max(2, actual_max_k)
 
+    # --- ELBOW METHOD dựa trên inertia ---
+    inertias = []
+    k_range = range(2, actual_max_k + 1)
+
+    for k in k_range:
+        km = KMeans(n_clusters=k, random_state=42, n_init=10)
+        km.fit(X_dense if len(X_dense) <= 500 else X_dense[
+            np.random.default_rng(42).choice(len(X_dense), 500, replace=False)
+        ])
+        inertias.append(km.inertia_)
+
+    # Tìm "khuỷu tay" = điểm giảm tốc độ giảm nhiều nhất
+    # Dùng tỉ lệ cải thiện: nếu thêm 1 cụm không giảm >5% thì dừng
     best_k = 2
-    best_score = -1
+    for i in range(1, len(inertias)):
+        improvement = (inertias[i-1] - inertias[i]) / inertias[i-1]
+        prev_improvement = (inertias[i-2] - inertias[i-1]) / inertias[i-2] if i > 1 else 1.0
+        # Elbow: tốc độ cải thiện giảm mạnh (xuống dưới 40% của lần trước)
+        if improvement < prev_improvement * 0.4:
+            best_k = list(k_range)[i-1]
+            break
+        best_k = list(k_range)[i]
 
-    for k in range(2, actual_max_k + 1):
-        kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
-        labels = kmeans.fit_predict(X_sample)
-        if 1 < len(set(labels)) < len(X_sample):
-            score = silhouette_score(X_sample, labels)
-            if score > best_score:
-                best_score = score
-                best_k = k
+    # Giới hạn thực tế: với báo chí đơn chủ đề không nên quá 10 cụm
+    best_k = min(best_k, 10)
 
-    print(f"    Silhouette tốt nhất: {best_score:.4f} tại K={best_k}")
+    print(f"    Elbow Method chọn K = {best_k} (inertia range: {inertias[0]:.0f} → {inertias[-1]:.0f})")
     return best_k
 
 def run_clustering():
     input_file = "us_iran_news_processed.json"
-    # num_clusters = 8
+
+    KEYWORDS = ['mỹ', 'iran', 'tehran', 'washington', 'đàm phán',
+                'hạt nhân', 'hormuz', 'trump', 'nuclear']
+    def is_relevant(article):
+        text = (article.get('title','') + ' ' + article.get('nội_dung_gốc','')).lower()
+        return any(kw in text for kw in KEYWORDS)
+
 
     try:
         with open(input_file, 'r', encoding='utf-8') as f:
@@ -90,7 +102,7 @@ def run_clustering():
     X_tfidf = vectorizer.fit_transform(corpus_tfidf)
 
     # hàm tối ưu K
-    optimal_k_tfidf = find_optimal_k(X_tfidf.toarray() if hasattr(X_tfidf, "toarray") else X_tfidf, max_k=23)
+    optimal_k_tfidf = find_optimal_k(X_tfidf.toarray() if hasattr(X_tfidf, "toarray") else X_tfidf, max_k=10)
     print(f"[*] Thuật toán tự động chọn K = {optimal_k_tfidf} cho TF-IDF")
 
     kmeans_tfidf = KMeans(n_clusters=optimal_k_tfidf, random_state=42, n_init=10)
@@ -100,6 +112,11 @@ def run_clustering():
                         articles, X_tfidf, kmeans_tfidf, optimal_k_tfidf,
                         top_k_per_cluster=3  # lấy 3 bài/cụm thay vì 1
                     )
+
+    KEYWORDS = ['mỹ', 'iran', 'tehran', 'washington', 'đàm phán',
+                'hạt nhân', 'hormuz', 'trump', 'nuclear']
+
+    filtered_tfidf = [a for a in filtered_tfidf if is_relevant(a)]
 
     # 🌟 ĐỘC LẬP HÓA DỮ LIỆU: Chỉ giữ lại các trường liên quan đến TF-IDF
     clean_tfidf_data = []
@@ -134,7 +151,7 @@ def run_clustering():
     X_bert = np.array(embeddings)
 
     # hàm tối ưu K
-    optimal_k_bert = find_optimal_k(X_bert, max_k=23)
+    optimal_k_bert = find_optimal_k(X_bert, max_k=10)
     print(f"[*] Thuật toán tự động chọn K = {optimal_k_bert} cho viBERT4news")
 
     kmeans_bert = KMeans(n_clusters=optimal_k_bert, random_state=42, n_init=10)
@@ -144,6 +161,11 @@ def run_clustering():
                     articles, X_bert, kmeans_bert, optimal_k_bert,
                     top_k_per_cluster=3
                     )
+
+    KEYWORDS = ['mỹ', 'iran', 'tehran', 'washington', 'đàm phán',
+                'hạt nhân', 'hormuz', 'trump', 'nuclear']
+
+    filtered_bert = [a for a in filtered_bert if is_relevant(a)]
 
     # 🌟 ĐỘC LẬP HÓA DỮ LIỆU: Chỉ giữ lại các trường liên quan đến BERT
     clean_bert_data = []

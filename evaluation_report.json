@@ -1,39 +1,39 @@
 {
     "TF-IDF": {
         "ROUGE-1": {
-            "F1": 0.7228915662650601,
-            "Precision": 0.821917808219178,
-            "Recall": 0.6451612903225806
+            "F1": 0.6840052015604681,
+            "Precision": 0.6624685138539043,
+            "Recall": 0.706989247311828
         },
         "ROUGE-2": {
-            "F1": 0.33534743202416917,
-            "Precision": 0.38144329896907214,
+            "F1": 0.2894393741851369,
+            "Precision": 0.2803030303030303,
             "Recall": 0.2991913746630728
         },
         "ROUGE-L": {
-            "F1": 0.3042168674698795,
-            "Precision": 0.3458904109589041,
-            "Recall": 0.271505376344086
+            "F1": 0.3042912873862158,
+            "Precision": 0.2947103274559194,
+            "Recall": 0.31451612903225806
         }
     },
     "BERT": {
         "ROUGE-1": {
-            "F1": 0.5448028673835126,
-            "Precision": 0.8172043010752689,
-            "Recall": 0.40860215053763443
+            "F1": 0.6490984743411928,
+            "Precision": 0.670487106017192,
+            "Recall": 0.6290322580645161
         },
         "ROUGE-2": {
-            "F1": 0.2338129496402878,
-            "Precision": 0.35135135135135137,
-            "Recall": 0.1752021563342318
+            "F1": 0.2976356050069541,
+            "Precision": 0.3074712643678161,
+            "Recall": 0.2884097035040431
         },
         "ROUGE-L": {
-            "F1": 0.2724014336917563,
-            "Precision": 0.40860215053763443,
-            "Recall": 0.20430107526881722
+            "F1": 0.2829403606102635,
+            "Precision": 0.2922636103151863,
+            "Recall": 0.27419354838709675
         }
     },
-    "summary_tfidf": "Các phái đoàn Mỹ và Iran ngày 11/4 bắt đầu đàm phán trực tiếp tại thủ đô Islamabad của Pakistan, nhưng các bên không đạt được thoả thuận nào sau 21 giờ thương lượng. Diễn biến làm dấy lên lo ngại Mỹ và Tehran trở lại thế đối đầu, tiếp tục cuộc xung đột đã khiến hàng nghìn người thiệt mạng, tác động tiêu cực đến nền kinh tế toàn cầu. \" Hãy chờ xem Iran có chấp nhận nó hay không \", Tổng thống Trump từng đe doạ \"xóa sổ một nền văn minh \" ngay trước khi Washington và Tehran đạt lệnh ngừng bắn 2 tuần hôm 8/4... là những tin đáng chú ý nhất sáng nay ( 12/4 ) cho Trung Quốc và Triều Tiên \" kêu gọi \" ngừng vũ khí hạt nhân, cảnh báo xung đột có thể leo thang trở lại với các yếu tố được dự báo có thể còn tồn tại giữa các căng thẳng sau hội nghị thượng đỉnh liên quan đến căng thẳng tại khu vực Trung Đông cũng như những động thái tiếp theo của ông Trump, ông chủ Nhà Trắng đã có những tuyên bố cứng rắn.",
-    "summary_bert": "Các nguồn tin cho biết Mỹ đã gửi bản đề xuất ngừng bắn 15 điểm tới Iran ; Mỹ cam kết hỗ trợ việc sản xuất điện tại nhà máy hạt nhân dân sự Bushehr của Một nhà máy lọc khí hoá lỏng của Iran bị hư hại sau vụ tấn công của Iran hồi tháng 3 vào thành phố công nghiệp ngàn tỉ ở Trung Quốc... là những tin đáng chú ý trong ngày 17-12 này. TTO xin giới thiệu một số nội dung quan trọng của \" cuộc đàm phán phán phán lớn \" Mỹ - Iran đang tập trung vào vấn đề Triều Tiên hiện nay.ỈNH MẬU TUỔI TRÍ 24h sáng nay ( 25/11 ).... là tin nóng thế giới 24 giờ ngày 25-11.",
+    "summary_tfidf": "Tổng thống Mỹ Donald Trump cho biết Chủ tịch Trung Quốc Tập Cận Bình có lập trường rõ ràng rằng Iran không được sở hữu vũ khí hạt nhân, trong khi ông Trump vẫn kiên quyết không cho rằng điều này có thể làm Iran ngừng chương trình hạt nhân trong 20 năm tới hay không.'Ông Tập nói như vậy là để cho Iran mở lại eo biển Hormuz ', Hãng tin AFP đưa tin ngày 15-5. Người đứng đầu Nhà Trắng đang có chuyến đi dạo cùng ông Donald Trump tại khu Trung Nam Hải ở Bắc Kinh hôm qua ( 14-5 ).Ửn ảnh hưởng đến chuyến đi của ông Kim Jong-un ở Bắc Triều Tiên hiện vẫn còn nguyên hình ảnh trên trang mạng xã hội của người Mỹ và nhiều người đưa tin về diễn biến này, ngày 16-5-2018, theo Đài CNN, và ông Trump đã rút lại chuyến thăm Trung Quốc trở lại sau chuyến thăm của ông đến Bắc Kinh, sau chuyến đi xuống biển ở Trung Quốc, và có thể tái ngộ ông Tập khi ông kết thúc chuyến thăm Bắc Kinh cũng như khi ông rút khỏi chuyến công du đến Trung Quốc tháng 11 ở Đông Nam Á''Ùn 12-11 '.Ửng có nhiều tàu đã đi dạo và có tàu theo dõi các tuyến đường biển ở Bắc Trung Quốc.ỰNG MẬU DIỆP.ÙN 16h30 ngày 17-5 tại thủ đô Washington và hơn 300.000 người trên chuyên cơ Air Force One vẫn còn tiếp tục tăng tốc tìm kiếm và ngắm nhìn các con tàu trên đường phố ở thủ đô của Mỹ.",
+    "summary_bert": "Sáng 20.5, giá xăng dầu quay đầu giảm nhẹ. Tuy nhiên, giá dầu vẫn duy trì mức cao sau nhiều phiên tăng mạnh, trong khi các nhà máy lọc dầu Trung Quốc cắt giảm công suất chế biến hơn 1 triệu thùng/ngày kể từ khi chiến sự Iran bùng phát. Giá xăng dầu dự báo sẽ tăng vào chiều mai ( 21/5 ) - ngày nóng nhất của căng thẳng thương mại Mỹ - Trung tại khu vực Trung Đông hiện vẫn là tâm điểm chú ý của trái tim người tiêu dùng thế giới. Tại châu Á, nếu động thái này diễn biến khó lường, có thể xảy ra xung đột quân sự sẽ ảnh hưởng đến thị trường Mỹ và Trung Quốc cùng tăng giá vào chiều tối và ngày 22/5/2019 sau cuộc gặp giữa ông Trump và ông Kim Jong-un, 111,28 USD/người, tức sau hiệp ước hạt nhân do xung đột Mỹ - Iran nổ ra, leo thang có thể tạo ra động thái quân sự tương tự như những ngày đầu tiên của Mỹ - Anh, tức kéo dài hơn 2 tháng sau cuộc chiến tranh thương mại tự do ( FED ) kéo dài 1-2 năm 1999-2000, 1-1-1900 và 112,15 USD/30 USD/45 giờ đồng hồ, 12h01 sáng nay 20,11 giờ châu Á, 11 giờ 01/4, 15 giờ chiều 22 giờ 02-11/05 tại G20, 30/4 tại Trung Đông.",
     "ground_truth": "Căng thẳng Mỹ - Iran leo thang nghiêm trọng từ đầu năm 2026, bắt đầu bằng chiến dịch phong tỏa hải quân của Mỹ tại vịnh Oman và biển Arab. Mỹ triển khai \"Dự án Tự do\" hộ tống tàu thương mại qua eo biển Hormuz, trong khi Iran đáp trả bằng tên lửa, UAV và tàu tấn công nhanh nhắm vào tàu chiến Mỹ và cơ sở dầu mỏ của UAE.\nPakistan đứng ra làm trung gian, tổ chức vòng đàm phán trực tiếp cấp cao tại Islamabad vào giữa tháng 4/2026 — cuộc gặp Mỹ - Iran trực tiếp đầu tiên kể từ năm 1979. Phái đoàn Mỹ do Phó tổng thống JD Vance dẫn đầu, phía Iran do Chủ tịch Quốc hội Ghalibaf và Ngoại trưởng Araqchi đại diện. Sau gần 21 giờ đàm phán, hai bên rời Islamabad mà không đạt thỏa thuận do bất đồng cốt lõi về chương trình hạt nhân của Tehran.\nĐiểm nghẽn chính là yêu cầu của Mỹ đình chỉ hoàn toàn làm giàu uranium, trong khi Iran khẳng định quyền phát triển hạt nhân dân sự. Lệnh ngừng bắn nhiều lần được gia hạn nhưng liên tục bị vi phạm, đặc biệt tại eo biển Hormuz ngày 7-8/5. Giá dầu thô tăng vọt lên 104 USD/thùng. Các nước Thổ Nhĩ Kỳ, Ai Cập, Pakistan tiếp tục thúc đẩy vòng đàm phán thứ hai, song triển vọng hòa bình vẫn còn xa vời."
 }

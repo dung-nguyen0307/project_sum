@@ -35,8 +35,8 @@ def generate_single_summary(filtered_file_path, output_file_path, pipeline_name)
     with torch.no_grad():
         outputs = model.generate(
             inputs["input_ids"],
-            max_length=224,  # 1. Tăng giới hạn trần ~230 từ
-            min_length=148,  # 2. Tăng giới hạn sàn ~190 từ
+            max_length=500,  # 1. ~200-220 từ × 2 tokens/từ = 400-440
+            min_length=320,  # 2. ~160 từ × 2 tokens/từ = 320
             num_beams=6,  # 3. Tăng số lượng chùm tìm kiếm để mở rộng không gian chọn từ
             length_penalty=2,  # 4. Đặt length_penalty >= 1.0 để phạt các chuỗi ngắn, khuyến khích câu dài
             no_repeat_ngram_size=3,  # 5. Chặn lặp cụm 3 từ liên tiếp khi ép mô hình viết dài
