@@ -43,18 +43,6 @@ def generate_single_summary(filtered_file_path, output_file_path, pipeline_name)
             early_stopping=False
         )
 
-    """
-    min_length=150: Tạo ra một bộ lọc bắt buộc (hard constraint). Mô hình sẽ không được phép phân phối xác suất cho token kết thúc (<eos>) 
-    cho đến khi chuỗi giải mã đạt tối thiểu 150 tokens.
-
-    length_penalty=2.5: Điểm số của chuỗi giải mã được tính bằng công thức tỉ lệ thuận với độ dài câu lũy thừa hóa. Khi giá trị này lớn hơn 1.0, 
-    các chuỗi có độ dài lớn hơn sẽ có lợi thế về điểm số xác suất tích lũy trong quá trình duyệt cây Beam Search.
-
-    no_repeat_ngram_size=3: Khi ép các mô hình Transformer viết dài, một lỗi hệ thống phổ biến là hiện tượng "vòng lặp vô hạn" 
-    (nhắc đi nhắc lại một cụm từ). Việc cấu hình tham số này bằng 3 sẽ triệt tiêu xác suất của bất kỳ từ nào 
-    nếu nó chuẩn bị tạo thành một cụm 3 từ đã từng xuất hiện trước đó trong sequence, đảm bảo văn bản sinh ra phong phú và mạch lạc hơn.
-    """
-
     master_summary = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
     result = {
