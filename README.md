@@ -108,10 +108,10 @@ visualize_results(report)
 ## 📊 Kết quả
 
 | Metric    | TF-IDF + K-Means + ViT5 | viBERT + K-Means + ViT5 |
-|-----------|------------------------|------------------------|
-| ROUGE-1 F1 | **0.7229**            | 0.5448                 |
-| ROUGE-2 F1 | **0.3353**            | 0.2338                 |
-| ROUGE-L F1 | **0.3042**            | 0.2724                 |
+|-----------|-----------|-------------------------|
+| ROUGE-1 F1 | 0.6071    | **0.6179**              |
+| ROUGE-2 F1 | 0.2972    | **0.3144**              |
+| ROUGE-L F1 | 0.2888    | **0.3003**              |
 
 > Sau khi chạy xong, mở file `evaluation_visualization.html` bằng trình duyệt để xem dashboard đầy đủ.
 
