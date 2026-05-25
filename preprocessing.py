@@ -111,16 +111,21 @@ def run_preprocessing():
             "nội_dung_bert": bert_content
         })
 
-    with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(processed_articles, f, ensure_ascii=False, indent=4)
-
-    print(f"✅ HOÀN THÀNH TIỀN XỬ LÝ! Lưu tại: {output_file}")
+    # Dedup theo title TRƯỚC khi lưu file
     seen_titles = set()
     unique_articles = []
     for a in processed_articles:
         if a['title'] not in seen_titles:
             seen_titles.add(a['title'])
             unique_articles.append(a)
-
     print(f"Sau dedup: {len(unique_articles)}/{len(processed_articles)} bài unique")
     processed_articles = unique_articles
+
+    # Kiểm tra không rỗng trước khi lưu
+    if not processed_articles:
+        print("❌ Không có bài nào hợp lệ sau preprocessing. Kiểm tra lại us_iran_news.json.")
+        return
+
+    with open(output_file, 'w', encoding='utf-8') as f:
+        json.dump(processed_articles, f, ensure_ascii=False, indent=4)
+    print(f"✅ HOÀN THÀNH TIỀN XỬ LÝ! Đã lưu {len(processed_articles)} bài unique tại: {output_file}")

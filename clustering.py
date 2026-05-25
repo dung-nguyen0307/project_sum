@@ -95,6 +95,16 @@ def run_clustering():
         print("Không tìm thấy file processed.")
         return
 
+    if not articles:
+        print("❌ Không có bài nào trong file processed. Hãy chạy lại preprocessing.")
+        return
+
+    # Kiểm tra nội_dung_tfidf không rỗng
+    corpus_check = [a.get('nội_dung_tfidf', '') for a in articles]
+    if not any(corpus_check):
+        print("❌ Tất cả nội_dung_tfidf đều rỗng. Hãy chạy lại preprocessing.")
+        return
+
     # --- NHÁNH 1: TF-IDF VÀ LỌC TRÙNG ---
     print("\n--- CHẠY PHÂN CỤM VÀ LỌC TRÙNG VỚI TF-IDF ---")
     corpus_tfidf = [a['nội_dung_tfidf'] for a in articles]
@@ -112,9 +122,6 @@ def run_clustering():
                         articles, X_tfidf, kmeans_tfidf, optimal_k_tfidf,
                         top_k_per_cluster=3  # lấy 3 bài/cụm thay vì 1
                     )
-
-    KEYWORDS = ['mỹ', 'iran', 'tehran', 'washington', 'đàm phán',
-                'hạt nhân', 'hormuz', 'trump', 'nuclear']
 
     filtered_tfidf = [a for a in filtered_tfidf if is_relevant(a)]
 
@@ -161,9 +168,6 @@ def run_clustering():
                     articles, X_bert, kmeans_bert, optimal_k_bert,
                     top_k_per_cluster=3
                     )
-
-    KEYWORDS = ['mỹ', 'iran', 'tehran', 'washington', 'đàm phán',
-                'hạt nhân', 'hormuz', 'trump', 'nuclear']
 
     filtered_bert = [a for a in filtered_bert if is_relevant(a)]
 

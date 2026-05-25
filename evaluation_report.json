@@ -1,0 +1,39 @@
+{
+    "TF-IDF": {
+        "ROUGE-1": {
+            "F1": 0.6070726915520629,
+            "Precision": 0.47832817337461303,
+            "Recall": 0.8306451612903226
+        },
+        "ROUGE-2": {
+            "F1": 0.297244094488189,
+            "Precision": 0.23410852713178296,
+            "Recall": 0.40700808625336926
+        },
+        "ROUGE-L": {
+            "F1": 0.2888015717092338,
+            "Precision": 0.22755417956656346,
+            "Recall": 0.3951612903225806
+        }
+    },
+    "BERT": {
+        "ROUGE-1": {
+            "F1": 0.6179018286814244,
+            "Precision": 0.48125937031484256,
+            "Recall": 0.8629032258064516
+        },
+        "ROUGE-2": {
+            "F1": 0.31436837029893927,
+            "Precision": 0.24474474474474475,
+            "Recall": 0.4393530997304582
+        },
+        "ROUGE-L": {
+            "F1": 0.3002887391722811,
+            "Precision": 0.23388305847076463,
+            "Recall": 0.41935483870967744
+        }
+    },
+    "summary_tfidf": "Trump tin rằng chỉ cần Iran có cam kết, chiến dịch \"Cơn thịnh nộ Kinh hoàng \" sẽ chấm dứt, Mỹ sẽ có cơ hội mở lại eo biển Hormuz, trong khi Tổng thống Iran vẫn vung \"cây gậy lớn \" doạ tiếp tục tấn công công cơ sở hạt nhân dân sự của nước này, bắt đầu từ hôm nay ( 6/5 ). Vậy, ông Trump đã làm gì để cứu vớt cuộc xung đột đang gây chao đảo cả Trung Đông cũng như toàn cầu...?. Rất may ông đã thoát khỏi tay \" ông trùm xã hội đen \" này.ÓỚ...Ạ.Ù hôm nay khá ổn định ở mức 160 USD / ounce, sau khi Giá xăng dầu hôm nay được giữ nguyên giá 10 USD, đủ cho tất cả các mặt hàng thiết yếu trên thế giới, trong đó có năng lượng và các loại vũ khí hạt nhân, và đó là những thứ có thể tạo nên sức ép vô thời hạn dành cho cuộc chiến đang diễn ra, và chắc chắn sẽ còn tiếp tục duy trì áp lực tối đa với Iran, các nhà đầu tư và các quan chức Mỹ đang hy vọng sẽ tạo nên một kỷ lục mới về giá trị thương mại và đầu tư trong ngày hôm nay, 22/4, mặc dù vẫn còn nhiều kỳ vọng nhưng vẫn còn hy vọng, có thể tiếp tục tăng giá sau khi Mỹ thông báo ngừng bắn, trong lúc căng thẳng đang tiếp tục leo thang, theo các nguồn tin cho biết, giá xăng dầu cũng đã tăng trở lại sau khi căng thẳng Mỹ - Iran có dấu hiệu hạ nhiệt vào 11h trưa nay nay, theo dõi chặt chẽ diễn biến chính trị căng thẳng kéo dài và giá dầu cũng như những chi tiết quan trọng khác từ nay cho đến hết ngày 22.5, theo hãng tin Bloomberg đưa tin chính thức, dù cho các tín hiệu từ Mỹ sẽ không tăng thêm nữa, trong bối cảnh Iran có khả năng sẽ vẫn duy trì một mực duy trì ở mức thấp hơn giá trị các yếu tố tạo nên căng thẳng sau đó, cũng như khẳng định Iran sẽ không nhượng bộ các lệnh trừng phạt của Mỹ không thể hiện ra, nhưng đó vẫn là một con số không hề nhỏ giọt, các chỉ số giá trị kinh tế và số liệu thống kê không chính thức được giữ lại, các con số vẫn còn trên thị trường chứng khoán, và vẫn còn đó nhiều yếu tố hỗ trợ cho việc tạo thêm căng thẳng, và thậm chí còn tăng giá, theo",
+    "summary_bert": "Chính quyền Iran vừa tuyên bố sẽ đáp trả mạnh mẽ nếu Mỹ nối lại các hành động thù địch, đồng thời cảnh báo sẽ còn \" cay đắng hơn \" đối với Washington nếu như hai bên không đạt được thoả thuận trong vòng \" vài ngày tới \" sau cuộc xung đột giữa hai nền kinh tế lớn nhất Trung Đông và căng thẳng quanh eo biển Hormuz.Ờng, ngày 21-5, kênh truyền hình Al Arabiya cho biết đã nghe các đài và người dân tại Iran kéo đến kêu gọi thả heo và bắt đầu tuần tra tự do ở vùng biển ngoài khơi nước này ( f f f. 10-11 ).ÓÓÓỚ...Ạ.Ù đã có những người dân Iran cầm phiếu và lá phiếu ủng hộ Tổng thống Mỹ Donald Trump sau cuộc gặp lãnh đạo Iran - Iran hôm qua, 23-5 tại thủ đô Tehran, sau khi có thông tin Mỹ sẽ tấn công kế hoạch của ông Trump tại khu vực, trong bối cảnh các cuộc đàm phán vẫn đang diễn ra, không lâu sau khi các nhà đàm phán Mỹ và Iran có động thái xoa dịu căng thẳng sau khi hai bên bắt đầu ngừng bắn, và hi vọng sớm đạt được một thoả thuận hoà bình sau khi đàm phán kết thúc và thông tin này vẫn còn tiếp tục khiến tình hình leo thang, bất ổn và có nguy cơ xảy ra xung đột đột đột quy mô lớn kéo dài vài ngày qua, sau đó một số tín hiệu khả quan từ Iran cho biết sẵn sàng cầm súng và sẵn sàng hy sinh cho tương lai hoà bình ở khu vực Trung Đông, sau một ngày căng thẳng mới leo thang và chưa có dấu hiệu hạ nhiệt, mặc dù giới quan sát cho rằng viễn cảnh này vẫn không có cơ hội để duy trì hoà bình và ổn định, nhưng vẫn còn một số vấn đề còn tồn tại giữa hai bên, đặc biệt là vấn đề hạt nhân và thị trường bất động sản, cũng như những số liệu chưa được xem xét, và vẫn còn đó những bất đồng lớn. Đó là những tin đáng chú ý trong ngày 22-5 và 1-6 được dự báo trước đó vài ngày sau khi căng thẳng Mỹ - Iran vẫn kéo dài sang ngày thứ 3 liên tiếp, mặc cho các cuộc giao tranh vẫn tiếp diễn, để ngăn chặn các cuộc tấn công tiếp theo, một số diễn biến cho thấy sự bất đồng giữa hai nước vẫn còn rất căng thẳng, bất chấp những dấu hiệu tích cực dự kiến sẽ tiếp tục kéo dài thời gian tới",
+    "ground_truth": "Căng thẳng Mỹ - Iran leo thang nghiêm trọng từ đầu năm 2026, bắt đầu bằng chiến dịch phong tỏa hải quân của Mỹ tại vịnh Oman và biển Arab. Mỹ triển khai \"Dự án Tự do\" hộ tống tàu thương mại qua eo biển Hormuz, trong khi Iran đáp trả bằng tên lửa, UAV và tàu tấn công nhanh nhắm vào tàu chiến Mỹ và cơ sở dầu mỏ của UAE.\nPakistan đứng ra làm trung gian, tổ chức vòng đàm phán trực tiếp cấp cao tại Islamabad vào giữa tháng 4/2026 — cuộc gặp Mỹ - Iran trực tiếp đầu tiên kể từ năm 1979. Phái đoàn Mỹ do Phó tổng thống JD Vance dẫn đầu, phía Iran do Chủ tịch Quốc hội Ghalibaf và Ngoại trưởng Araqchi đại diện. Sau gần 21 giờ đàm phán, hai bên rời Islamabad mà không đạt thỏa thuận do bất đồng cốt lõi về chương trình hạt nhân của Tehran.\nĐiểm nghẽn chính là yêu cầu của Mỹ đình chỉ hoàn toàn làm giàu uranium, trong khi Iran khẳng định quyền phát triển hạt nhân dân sự. Lệnh ngừng bắn nhiều lần được gia hạn nhưng liên tục bị vi phạm, đặc biệt tại eo biển Hormuz ngày 7-8/5. Giá dầu thô tăng vọt lên 104 USD/thùng. Các nước Thổ Nhĩ Kỳ, Ai Cập, Pakistan tiếp tục thúc đẩy vòng đàm phán thứ hai, song triển vọng hòa bình vẫn còn xa vời."
+}

@@ -6,7 +6,7 @@ from datetime import datetime
 import re
 import hashlib
 import random
-from openai import max_retries
+MAX_RETRIES = 3  # Số lần thử lại tối đa khi gặp lỗi mạng
 from requests.exceptions import RequestException
 
 
@@ -26,7 +26,7 @@ def get_html(url):
     """
         Hàm gọi HTTP an toàn, có tính năng thử lại (retry) khi bị timeout hoặc lỗi mạng.
         """
-    for attempt in range(max_retries):
+    for attempt in range(MAX_RETRIES):
         try:
             # Chọn ngẫu nhiên một User-Agent
             headers = {"User-Agent": random.choice(USER_AGENTS)}
@@ -40,14 +40,14 @@ def get_html(url):
                 print(f"    [!] Cảnh báo: HTTP Status {response.status_code} tại {url}")
 
         except RequestException as e:
-            print(f"    [!] Lỗi kết nối (Lần thử {attempt + 1}/{max_retries}) tại {url}: {type(e).__name__}")
-            if attempt < max_retries - 1:
+            print(f"    [!] Lỗi kết nối (Lần thử {attempt + 1}/{MAX_RETRIES}) tại {url}: {type(e).__name__}")
+            if attempt < MAX_RETRIES - 1:
                 # Tạm nghỉ 2-3 giây trước khi thử lại
                 sleep_time = random.uniform(2, 4)
                 print(f"        -> Đang chờ {sleep_time:.1f}s để thử lại...")
                 time.sleep(sleep_time)
             else:
-                print(f"    [X] Bỏ qua URL sau {max_retries} lần thử thất bại.")
+                print(f"    [X] Bỏ qua URL sau {MAX_RETRIES} lần thử thất bại.")
                 return None
     return None
 
