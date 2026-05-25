@@ -2,11 +2,7 @@ import json
 import re
 from underthesea import word_tokenize
 
-# ==========================================
-# CẤU HÌNH TỪ ĐIỂN VÀ STOPWORDS
-# ==========================================
-
-# 1. Chuẩn hóa thực thể: Báo chí thường viết sai khác nhau (Tê-hê-ran vs Tehran) [cite: 119, 120]
+# 1. Chuẩn hóa từ: Báo chí thường viết phiên âm các từ
 ENTITY_DICTIONARY = {
     "tê-hê-ran": "Tehran",
     "tê hê ran": "Tehran",
@@ -21,11 +17,6 @@ ENTITY_DICTIONARY = {
 
 # 2. Stopwords cơ bản (Bạn có thể tải file vietnamese-stopwords.txt chuẩn trên mạng để thêm vào)
 STOPWORDS = {"và", "là", "của", "các", "những", "đã", "đang", "sẽ", "để", "thì", "mà", "như", "một", "có", "với"}
-
-
-# ==========================================
-# CÁC HÀM XỬ LÝ DỮ LIỆU CỐT LÕI
-# ==========================================
 
 def normalize_entities(text):
     """Đồng nhất tên gọi các thực thể địa lý, chính trị"""
@@ -75,9 +66,6 @@ def preprocess_for_bert(text):
     return segmented_text
 
 
-# ==========================================
-# HÀM CHẠY CHÍNH (MAIN PROCESS)
-# ==========================================
 def run_preprocessing():
     input_file = "us_iran_news.json"
     output_file = "us_iran_news_processed.json"

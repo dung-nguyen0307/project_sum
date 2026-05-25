@@ -18,10 +18,6 @@ USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0"
 ]
 
-# ==========================================
-# CÁC HÀM TIỆN ÍCH (UTILITIES)
-# ==========================================
-
 def get_html(url):
     """
         Hàm gọi HTTP an toàn, có tính năng thử lại (retry) khi bị timeout hoặc lỗi mạng.
@@ -90,11 +86,6 @@ def is_within_time_range(date_str, start_month, start_year, end_month, end_year)
 
     except ValueError:
         return False
-
-
-# ==========================================
-# CÁC HÀM CRAWL TỪNG BÁO
-# ==========================================
 
 def parse_vnexpress_article(url):
     html = get_html(url)
@@ -250,9 +241,6 @@ def crawl_thanhnien(keyword, start_m, start_y, end_m, end_y, max_pages=1):
     return articles
 
 
-# ==========================================
-# HÀM CHÍNH ĐƯỢC GỌI TỪ MAIN.PY
-# ==========================================
 def run_crawler():
     keyword = "Mỹ Iran"
     START_MONTH = 2
